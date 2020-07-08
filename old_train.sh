@@ -7,8 +7,8 @@ export EVAL_FILE=./.data/eval_small.txt
 python run_language_modeling.py \
 	--train_data_file $TRAIN_FILE \
 	--eval_data_file $EVAL_FILE \
-	--output_dir ./.models/LitBERTa-base-v4 \
-	--model_name_or_path ./.models/LitBERTa-base-v3 \
+	--output_dir ./.models/LitBERTa-base-v6 \
+	--model_name_or_path ./.models/LitBERTa-base-v5 \
 	--overwrite_output \
 	--model_type roberta \
 	--mlm \
@@ -18,11 +18,11 @@ python run_language_modeling.py \
 	--do_eval \
 	--line_by_line \
 	--learning_rate 1e-5 \
-	--num_train_epochs 2 \
+	--num_train_epochs 1 \
 	--save_total_limit 2 \
 	--save_steps 5000 \
-	--per_gpu_train_batch_size 8 \
-	--per_gpu_eval_batch_size 8 \
+	--per_gpu_train_batch_size 9 \
+	--per_gpu_eval_batch_size 9 \
 	--warmup_steps 5000 \
 	--do_eval \
 	--line_by_line \
