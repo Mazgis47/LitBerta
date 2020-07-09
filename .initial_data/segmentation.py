@@ -12,7 +12,7 @@ output_file = sys.argv[2]
 
 doc_seperator = "\n"
 punkt_param = PunktParameters()
-abbreviation = ['a', 'a.k.', 'pr', 'm', 'e', 'a.s','adv','akad','aklg','akt','al','apyg','aps','apskr','asist','asmv','avd','atsak',
+abbreviation = ['a', 'a.k.', 'pr', 'm', 'e', 'a.s','adv','akad','aklg','akt','al', 'angl', 'apyg','aps','apskr','asist','asmv','avd','atsak',
         'aut','biol','b.k','bkl','bot','bt','buv','chem','d','dail','dek','dėst','dir','dirig','doc','dr',
         'drp','dš','e.p','el.p','egz','eil','ekon','el', 'e', 'etc','ež','fak','faks','filol','filos','g',
         'G','gen','geol','gerb','gim','gyd','gv','įl','Įn','insp','inž','pan','t.t','istor','k','Em.','k.a','kand',
