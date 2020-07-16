@@ -16,7 +16,7 @@ abbreviation = ['a', 'a.k.', 'pr', 'm', 'e', 'a.s','adv','akad','aklg','akt','al
         'aut','biol','b.k','bkl','bot','bt','buv','chem','d','dail','dek','dėst','dir','dirig','doc','dr',
         'drp','dš','e.p','el.p','egz','eil','ekon','el', 'e', 'etc','ež','fak','faks','filol','filos','g',
         'G','gen','geol','gerb','gim','gyd','gv','įl','Įn','insp','inž','pan','t.t','istor','k','Em.','k.a','kand',
-        'kat','kg','kyš','kl','kln','kn','koresp','kpt','kr','kt','kun','l.e.p', 'liet', 'ltn','mat','med','mgr','mgnt','mjr',
+        'kat','kg','kyš','kl','kln','kn','koresp','kpt','kr','kt','kun','l.e.p', 'liet', 'ltn','mat','med', 'mėn', 'mgr','mgnt','mjr',
         'mln','mlrd','mok','mst','mstl','N','nkt','ntk','nr','p','p.d','p.m.e','pav','pavad','pirm','pl','plg',
         'plk','pr.kr','prof','prok','prot','pss','pšt','pvz','r','red','rš','s','sąs','sav','saviv','sekr',
         'sen','sk','skg','skyr','skv','sp','spec','sr','st','str','stud','š.m','šnek','šv','t','t.y','t.p','techn',
