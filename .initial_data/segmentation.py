@@ -20,7 +20,7 @@ abbreviation = ['a', 'a.k.', 'pr', 'm', 'e', 'a.s','adv','akad','aklg','akt','al
         'mln','mlrd','mok','mst','mstl','N','nkt','ntk','nr','p','p.d','p.m.e','pav','pavad','pirm','pl','plg',
         'plk','pr.kr','prof','prok','prot','pss','pšt','pvz','r','red','rš','s','sąs','sav','saviv','sekr',
         'sen','sk','skg','skyr','skv','sp','spec','sr','st','str','stud','š.m','šnek','šv','t','t.y','t.p','techn',
-        'tel','teol','tir','tūkst','up','upl','V','vad','ved','vet','vrš','vyr','vyresn','vs','Vt','vtv', 'vv',
+        'tel','teol','tir','tūkst','up','upl','V','vad','ved','vet','vnt','vrš','vyr','vyresn','vs','Vt','vtv', 'vv',
         'zool','žml','žr','ž.ū','šmt']
 punkt_param.abbrev_types = set(abbreviation)
 tokenizer = PunktSentenceTokenizer(punkt_param)
