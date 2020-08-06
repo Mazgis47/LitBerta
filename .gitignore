@@ -1,0 +1,6 @@
+glove
+runs/
+.models
+.initial_data/*.txt
+tmp*
+.knygos
