@@ -1,10 +1,10 @@
 #!/bin/bash
-train_data_file='./.initial_data/full-segmented-uniq2.txt'
+train_data_file='./.initial_data/_full-final.txt'
 tmp_file='tmp.txt'
 export TRAIN_FILE="./train_$tmp_file"
 export EVAL_FILE="./eval_$tmp_file"
-chunk_lines=2000000
-epochs=4
+chunk_lines=3000000
+epochs=3
 epochs_idx=$((epochs -1))
 log_file='log_train.log'
 
@@ -26,6 +26,7 @@ for i in $(seq 0 $epochs_idx); do
 		date  >> "$log_file"
 		sed -n "$start_line,$end_line p;$end_line q" "$train_data_file" > "$tmp_file"
 		python split.py "$tmp_file" "$i"
+		echo "-------------------- NEW LAUNCH---------------------> From $v to $next_v"
 		python run_language_modeling.py \
 			--train_data_file $TRAIN_FILE \
 			--eval_data_file $EVAL_FILE \
@@ -53,6 +54,10 @@ for i in $(seq 0 $epochs_idx); do
 			--evaluate_during_training \
 			--block_size 128 \
 			--fp16
+		exit_code=$?
+		if [ $exit_code != 0 ]; then
+			echo "ERROR from modeling script: $exit_code"
+		fi
 		start_line=$((end_line + 1))
 		v=$((v+1))
 		echo "END:"  >> "$log_file"
