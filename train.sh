@@ -27,6 +27,7 @@ for i in $(seq 0 $epochs_idx); do
 		sed -n "$start_line,$end_line p;$end_line q" "$train_data_file" > "$tmp_file"
 		python split.py "$tmp_file" "$i"
 		echo "-------------------- NEW LAUNCH---------------------> From $v to $next_v"
+		echo "-------------------- NEW LAUNCH---------------------> From $v to $next_v" >> "$log_file"
 		python run_language_modeling.py \
 			--train_data_file $TRAIN_FILE \
 			--eval_data_file $EVAL_FILE \
@@ -35,8 +36,8 @@ for i in $(seq 0 $epochs_idx); do
 			--overwrite_output \
 			--model_type roberta \
 			--mlm \
-			--config_name .models/litberta \
-			--tokenizer_name .models/litberta \
+			--config_name "./.models/LitBERTa-base-v$v" \
+			--tokenizer_name "./.models/LitBERTa-base-v$v" \
 			--do_train  \
 			--do_eval \
 			--line_by_line \
