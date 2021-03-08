@@ -1,10 +1,10 @@
 #!/bin/bash
-train_data_file='./.initial_data/_full-final.txt'
+train_data_file='./.initial_data/tst1.txt'
 tmp_file='tmp.txt'
 export TRAIN_FILE="./train_$tmp_file"
 export EVAL_FILE="./eval_$tmp_file"
-chunk_lines=3000000
-epochs=3
+chunk_lines=2000000
+epochs=1
 epochs_idx=$((epochs -1))
 log_file='log_train.log'
 
@@ -13,12 +13,12 @@ log_file='log_train.log'
 echo "Counting lines in main file..." >> "$log_file"
 line_count=$(wc -l "$train_data_file" | cut -d ' ' -f 1)
 echo "$line_count" >> "$log_file"
-v=0
+next_v=0
 
 for i in $(seq 0 $epochs_idx); do
 	echo "EPOCH: $i"  >> "$log_file"
-	start_line=1
-
+	start_line=0
+	v=$next_v
 	while [ $start_line -lt $line_count ]; do
 		next_v=$((v+1))
 		end_line=$((start_line + chunk_lines))
@@ -28,16 +28,27 @@ for i in $(seq 0 $epochs_idx); do
 		python split.py "$tmp_file" "$i"
 		echo "-------------------- NEW LAUNCH---------------------> From $v to $next_v"
 		echo "-------------------- NEW LAUNCH---------------------> From $v to $next_v" >> "$log_file"
+		curr_dir="./.models/LitBERTa-base-v$v"
+		next_dir="./.models/LitBERTa-base-v$next_v"
+		echo "$curr_dir $next_dir" >> "$log_file"
+		if [ ! -f "$curr_dir/config.json" ]; then
+			echo "Config file was not found in the $curr_dir (sleeping)" >> "$log_file"
+			sleep 60
+		fi
+		if [ ! -f "$curr_dir/config.json" ]; then
+	                echo "Config file was not found in the $curr_dir" >> "$log_file"
+			exit 1
+		fi
 		python run_language_modeling.py \
 			--train_data_file $TRAIN_FILE \
 			--eval_data_file $EVAL_FILE \
-			--output_dir "./.models/LitBERTa-base-v$next_v" \
-			--model_name_or_path "./.models/LitBERTa-base-v$v" \
+			--output_dir "$next_dir" \
+			--model_name_or_path "$curr_dir" \
 			--overwrite_output \
 			--model_type roberta \
 			--mlm \
-			--config_name "./.models/LitBERTa-base-v$v" \
-			--tokenizer_name "./.models/LitBERTa-base-v$v" \
+			--config_name "$curr_dir" \
+			--tokenizer_name "$curr_dir" \
 			--do_train  \
 			--do_eval \
 			--line_by_line \
@@ -45,7 +56,7 @@ for i in $(seq 0 $epochs_idx); do
 			--num_train_epochs 1 \
 			--save_total_limit 2 \
 			--save_steps 5000 \
-			--per_gpu_train_batch_size 9 \
+			--per_gpu_train_batch_size 7 \
 			--per_gpu_eval_batch_size 9 \
 			--warmup_steps 5000 \
 			--do_eval \
@@ -58,7 +69,9 @@ for i in $(seq 0 $epochs_idx); do
 		exit_code=$?
 		if [ $exit_code != 0 ]; then
 			echo "ERROR from modeling script: $exit_code"
+			exit 1
 		fi
+
 		start_line=$((end_line + 1))
 		v=$((v+1))
 		echo "END:"  >> "$log_file"

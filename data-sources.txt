@@ -1,4 +1,10 @@
 https://index.commoncrawl.org/CC-MAIN-2020-24-index?url=lrytas.lt&output=json
+https://index.commoncrawl.org/CC-MAIN-2020-24-index?url=www.delfi.lt&output=json
+
+
+https://commoncrawl.s3.amazonaws.com/crawl-data/CC-MAIN-2020-24/segments/1590348492427.71/warc/CC-MAIN-20200605014501-20200605044501-00179.warc.gz
 https://traces1.inria.fr/oscar/
 https://dumps.wikimedia.org/ltwiki/
 lrs.lt
+ https://commoncrawl.s3.amazonaws.com/crawl-data/CC-MAIN-2020-34 - neveikia
+https://index.commoncrawl.org/CC-MAIN-2020-34/

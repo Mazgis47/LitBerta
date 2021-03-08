@@ -1,6 +1,12 @@
 glove
 runs/
 .models
-.initial_data/*.txt
+.models2
+data/
+.initial_data/*
 tmp*
 .knygos
+.teise/
+.webcrawl/
+.teise/
+__pycache__/
